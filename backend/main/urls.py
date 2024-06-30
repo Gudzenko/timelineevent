@@ -1,6 +1,10 @@
-from django.urls import path
-from . import views
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import EventViewSet
+
+router = DefaultRouter()
+router.register(r'events', EventViewSet)
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('', include(router.urls)),
 ]
